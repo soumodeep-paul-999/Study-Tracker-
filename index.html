@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="main">
+        <div class="inner-body">
+            <div class="inner-head">
+                <h2>Notes Tracker</h2>
+            </div>
+            <div class="inner-bg">
+                <div id="res" style="color: green;padding: 2% 5%;font-weight: 800;"></div>
+                <form method="post" id="form">
+                    <div class="form-design">
+                        <label for="batch">Batch</label>
+                        <input type="text" placeholder="Enter Batch Name" name="batch" id="batch">
+                    </div>
+                    <div class="form-design">
+                        <label for="subject">Subject</label>
+                        <input type="text" placeholder="Enter Subject Name" name="subject" id="subject">
+                    </div>
+                    <div class="form-design">
+                        <label for="teacher">Teacher</label>
+                        <input type="text" placeholder="Enter Teacher Name" name="teacher" id="teacher">
+                    </div>
+                    <div class="form-design">
+                        <label for="question">Questions/Topic</label>
+                        <textarea name="qt" placeholder="Enter Question / Topic Here" rows="5"
+                            cols="35" id="question"></textarea>
+                    </div>
+                    <div class="form-design">
+                        <label for="datetime">Date and Time</label>
+                        <input type="datetime-local" placeholder="Enter Date" name="datetime" id="datetime">
+                    </div>
+                    <div class="form-design">
+                        <button name="btn" class="green">Submit</button>
+                    </div>
+                    <div class="form-design">
+                        <button type="reset" name="rst" class="red">Reset</button>
+                    </div>
+                    <div class="blank-area"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    let url='https://script.google.com/macros/s/AKfycbw3Kjr5qvMkjkOH_9wkIyD8NtWoLxy2i38EyD0SpW98LfAyLKuCnYv6s-w7FG9htUeq/exec'
+    let form=document.querySelector('#form');
+    form.addEventListener("submit",(e)=>{
+        e.target.btn.innerHTML="Submitting....";
+        let d=new FormData(form);
+        fetch(url,{
+            method:"POST",
+            body:d
+        }).then((res)=>res.text())
+        .then((finalRes)=>{
+            e.target.btn.innerHTML="Submit";
+            document.getElementById("res").innerHTML=finalRes;
+            console.log(finalRes);
+            form.reset();
+            setTimeout(()=>{
+                document.getElementById("res").innerHTML='';
+            },5000)
+        })
+        e.preventDefault();
+    })
+</script>
+
+</html>
