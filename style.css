@@ -40,7 +40,6 @@ h2{
 .form-design textarea{
     padding: 10px;
     border-radius: 20px;
-    margin-left: 5px;
 }
 .form-design button{
     width: 18rem;
@@ -67,3 +66,4 @@ button{
 .blank-area{
     height: 20px;
 }
+
